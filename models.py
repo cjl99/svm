@@ -70,12 +70,10 @@ class Dual_Hard_SVM(SVMModel):
         for i in range(n):
             self.w += self.alpha[i] * y[i] * X[i] # (1, ) * (1, ) * (1, d) = (d, ) 
 
-        cnt = 0
         for i in range(n):
             if self.alpha[i] > 1e-9:
                 b = y[i] - X[i] @ self.w
-                cnt += 1
-        b /= cnt
+                break
         self.w = np.concatenate((self.w, np.array([b])), axis=0)  # (d, ) -> (d+1, )
 
         return self
@@ -142,7 +140,7 @@ class Dual_Soft_SVM(Primal_Soft_SVM):
 
         cnt = 0
         for i in range(n):
-            if self.alpha[i] > 1e-8:
+            if self.alpha[i] > 1e-9:
                 cnt += 1
                 b += y[i] - X[i] @ self.w
         b /= cnt

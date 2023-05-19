@@ -149,10 +149,10 @@ if __name__ == "__main__":
     args.add_argument("--C", type=float, default=1.5)
     args = args.parse_args()
 
-    run_easy_hard_test()
-    run_easy_soft_test()
+    # run_easy_hard_test()
+    # run_easy_soft_test()
 
-    run_data_a1_soft_test(C = args.C)
+    # run_data_a1_soft_test(C = args.C)
 
     run_addition_test(C = args.C) 
 
